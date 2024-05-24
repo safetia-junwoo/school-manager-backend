@@ -3,8 +3,6 @@ package com.base.boilerplate.auth.dto;
 import com.base.boilerplate.auth.domain.model.ComUser;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -12,14 +10,14 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @ToString
 @Builder
-public class UserDTO {
+public class UserRequestDTO {
     private Integer id;
     private String email;
     private String password;
     private String name;
     private String language;
-    private String login_type;
-    private String login_token;
+    private String loginType;
+    private String loginToken;
     private String address;
     private String gender;
     private String phone;
@@ -27,8 +25,8 @@ public class UserDTO {
     private String roleCode;
     private String roleName;
 
-    public static UserDTO convertToDTO(ComUser comUser){
-        return UserDTO.builder()
+    public static UserRequestDTO convertToDTO(ComUser comUser){
+        return UserRequestDTO.builder()
                 .id(comUser.getId())
                 .name(comUser.getName())
                 .build();

@@ -28,7 +28,7 @@ public class AuthService {
         try {
             if (!findUser.isPresent()) {
                 throw new CustomAuthException(HttpStatus.UNAUTHORIZED, "회원 정보가 없습니다.");
-            } else if (!loginDTO.getLoginPassword().equals(findUser.get().getLoginPassword())) {
+            } else if (!loginDTO.getLoginPassword().equals(findUser.get().getPassword())) {
                 throw new CustomAuthException(HttpStatus.UNAUTHORIZED, "비밀번호가 맞지 않습니다.");
             } else {
                 UserDetailsDTO userDetailsDTO = new UserDetailsDTO(findUser.get(), findUser.get().getId(), findUser.get().getComRole().getName());
@@ -88,7 +88,7 @@ public class AuthService {
         Optional<ComUser> findUser = userRepository.findByLoginId(userLoginId);
 
         UserDTO userDTO = UserDTO.convertToDTO(findUser.get());
-        userDTO.setSocialSecurityNumber(userDTO.getSocialSecurityNumber().substring(0,7));
+      //  userDTO.setSocialSecurityNumber(userDTO.getSocialSecurityNumber().substring(0,7));
         System.out.println("userDTO = " + userDTO);
         return userDTO;
     }
